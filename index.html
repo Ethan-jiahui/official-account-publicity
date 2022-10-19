@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<!-- saved from url=(0080)http://mp.qq.ku990l.cn/wersd/Lbqun/root/qun/uid/206559/o1xHUmR6Q8/3xtND34PM4.jpg -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0">
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>关注公众号加入群聊</title>
+    <link rel="stylesheet" type="text/css" href="css/aui.css">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jweixin-1.6.0.js"></script>
+	<script src="js/app.js"></script>
+    <style type="text/css">
+        .a {
+            border-bottom: 1px solid rgb(192, 191, 197);
+            background: rgb(249, 249, 249);
+            padding: 10% 0;
+        }
+
+        .header_picture {
+            width: 20%;
+            margin: 0 auto;
+        }
+
+        .header .title {
+            text-align: center;
+            margin-top: 2%;
+        }
+
+        .header .description {
+            text-align: center;
+            color: rgb(154, 154, 154);
+            height: 2%;
+        }
+
+        .footer {
+            background: rgb(240, 239, 244);
+        }
+
+        .footer .btns {
+            padding: 10% 0 48.6% 0;
+        }
+
+        .footer .btns .tip {
+            text-align: center;
+        }
+
+        .footer .btns .btn {
+            width: 50%;
+            height: 20%;
+            background: rgb(4, 191, 1);
+            margin: 10% auto;
+            padding: 2% 2%;
+            border-radius: 8px;
+        }
+
+        .footer .btns .btn .checked {
+            text-align: center;
+            color: rgb(252, 252, 252);
+            font-family: sans-serif;
+        }
+
+        .footer .dis {
+            padding: 5% 0 29% 0;
+            display: none;
+        }
+
+        /*main*/
+        #mask {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            background-color: black;
+            z-index: 1001;
+            -moz-opacity: 0.7;
+            opacity: .70;
+            filter: alpha(opacity=70);
+        }
+
+        .layer-show-share {
+            display: none;
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            opacity: 0.86;
+            background-color: #000;
+            z-index: 10000;
+        }
+
+        .layer-show-share .div-share {
+            width: 100%;
+            height: 100%;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            position: fixed;
+        }
+
+        .layer-show-share img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .layer-show-share1 {
+            display: none;
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            opacity: 0.86;
+            background-color: #000;
+            z-index: 10000;
+        }
+
+        .layer-show-share1 .div-share1 {
+            width: 100%;
+            height: 100%;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            position: fixed;
+        }
+
+        .layer-show-share1 img {
+            width: 100%;
+            height: 100%;
+        }
+
+
+        /*图片分享*/
+        #imgShare {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background: gainsboro;
+            opacity: 0.95;
+            display: none;
+        }
+
+        #imgShare > p {
+            text-align: center;
+            font-size: 20px;
+            margin: 14%;
+            color: black;
+        }
+
+        #imgShare .fingerBox .finger {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto;
+        }
+
+        #imgShare .circle {
+            border: solid #69ca62 2px;
+            transition: ease 0.5s;
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            animation: myLittle 1.5s infinite ease-in-out;
+            margin: 0 auto;
+            margin-top: -80px;
+        }
+
+        @keyframes myLittle {
+            from {
+                width: 80px;
+                height: 80px;
+                opacity: 1;
+                margin-top: -80px;
+            }
+            to {
+                margin-top: -60px;
+                width: 40px;
+                height: 40px;
+                display: none;
+                opacity: 0;
+            }
+        }
+
+        #imgShare .qrcode {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            max-height: 60%;
+            opacity: 0.01;
+        }
+
+        /*media*/
+        @media screen and (min-width: 570px) {
+            .a {
+                border-bottom: 1px solid rgb(192, 191, 197);
+                background: rgb(249, 249, 249);
+                padding: 4% 0;
+            }
+
+            .footer .btns {
+                padding: 0;
+                padding-top: 60px;
+                min-height: 571px;
+            }
+
+            #imgShare > p {
+                text-align: center;
+                font-size: 20px;
+                margin: 40px;
+                color: black;
+            }
+
+            #imgShare .fingerBox .newFinger {
+                max-width: 640px;
+                margin: 0 auto;
+            }
+        }
+
+        @media screen and (min-width: 1024px) {
+            .a {
+                width: 50%;
+                margin-left: 25%;
+                text-align: center;
+            }
+
+            .btns {
+                padding-bottom: 0;
+                min-height: 487px;
+            }
+
+            footer {
+                width: 50%;
+                margin-left: 25%;
+            }
+        }
+
+
+    </style>
+    <script>
+        var uid = "206559";
+        var u = "/wersd/lbqun/index/qunzf1/uid/206559.jpg";
+        var uu = "/wersd/lbqun/index/qunzf/uid/206559.jpg";
+        var us = "";
+        wx.config({
+            debug: false,
+            appId: 'wx4b689adfeb5203f5',
+            timestamp: '1611211220',
+            nonceStr: 'm73NlT7MaU2WtJMx',
+            signature: 'f0a5ff1cde381c16df1146148c80c1d3c5e8a248',
+            jsApiList: [
+                'updateAppMessageShareData',
+                'updateTimelineShareData',
+                'onMenuShareTimeline',
+                'onMenuShareAppMessage',
+                'hideMenuItems'
+            ]
+        });
+    </script>
+</head>
+<body>
+    <div id="imgShare">
+        <p>长按下方分享<br>分享后加入群聊</p>
+        <div class="fingerBox">
+            <img class="newFinger" src="img/newfinger.png" alt="">
+            <img class="finger" src="img/finger.png" alt="">
+            <div class="circle"></div>
+        </div>
+        <img id="qrcode" class="qrcode" src="img/6008f20d3967blbbyshare.jpeg" alt="">
+    </div>
+    <header>
+        <div class="a header">
+            <img class="header_picture" src="img/6008f20d37a91.jpeg" alt="">
+                
+            <h2 class="title">
+                                    投资记录.企业分析.副业项目分享交流群            </h2>
+            <h3 class="description">
+                                    (共89人)            </h3>
+        </div>
+    </header>
+    <main>
+        <div id="mask" style=" display: none;  position: absolute;  top: 0%;  left: 0%;  width: 100%;  height: 100%;  background-color: black;  z-index:1001;  -moz-opacity: 0.7;  opacity:.70;  filter: alpha(opacity=70);">
+        </div>
+
+        <div class="layer-show-share " style="z-index: 100">
+            <div class="div-share">
+                <img src="static/picture/sha.png">
+            </div>
+        </div>
+        <div class="layer-show-share1 " style="z-index: 100">
+            <div class="div-share1">
+                <img src="static/picture/shar.png">
+            </div>
+        </div>
+    </main>
+    <footer class="footer">
+        <div class="btns">
+            <h2 class="tip">确认加入群聊</h2>
+            <div class="btn">
+                <h2 class="checked">加入该群聊</h2>
+            </div>
+        </div>
+        <div class="dis">
+            <h2 align="center" style="font-family: 黑体">
+                                    由于广告狗太多，希望过滤机器人！所以长按二维码，关注公众号以后进入交流群！            </h2>
+                                   <center><h3>加入投资记录.企业分析.副业项目分享交流群请关注公众号</h3></center>
+								   <center> <h2>都到这里了关注一下吧！谁关注谁知道</h2></center>
+            <img src="img/6008f20d3967b.jpg" alt="" width="70%" style="margin: 5% auto 5% auto">
+                        </div>
+    </footer>
+<script>window.jQuery || document.write('<script src="js/jquery-2.1.1.min.js"><\/script>')</script>
+<script type="text/javascript">
+	common();
+    var oDate = new Date();
+    $('#time').text(oDate.getHours() + ':' + oDate.getMinutes());
+
+    $(document).ready(function () {
+        $('.btn').click(function () {
+            if (0) {
+                $('#imgShare').show();
+            } else if (0) {
+                alert('亲需要分享到一个微信群哦');
+                $('.layer-show-share1').show();
+
+                function jump(count) {
+                    window.setTimeout(function () {
+                        count--;
+                        if (count == 7) {
+                            $('.layer-show-share').show();
+                            $('.layer-show-share1').hide();
+                        }
+                        if (count > 0) {
+                            $('#last').attr('innerHTML', count);
+                            jump(count);
+                        } else {
+                            $('.layer-show-share').hide();
+                            $('.layer-show-share1').hide();
+                            $('.dis').show();
+                            $('.btns').hide();
+                        }
+                    }, 1000);
+                }
+
+                jump(14);
+
+            } else {
+                $('.dis').show();
+                $('.btns').hide();
+            }
+        });
+
+        //因js没有长按事件，需要自行封装，函数名longPress，参数为：需长按元素的id、长按之后的逻辑函数func
+        function longPress(id, func) {
+            var timeOutEvent;
+
+            document.querySelector("#" + id).addEventListener("touchstart", function (e) {
+                //开启定时器前先清除定时器，防止重复触发
+                clearTimeout(timeOutEvent);
+                //开启延时定时器
+                timeOutEvent = setTimeout(function () {
+                    //调用长按之后的逻辑函数func
+                    func();
+                }, 300); //长按时间为300ms，可以自己设置
+            });
+
+            document.querySelector("#" + id).addEventListener("touchmove", function (e) {
+                //长按过程中，手指是不能移动的，若移动则清除定时器，中断长按逻辑
+                clearTimeout(timeOutEvent);
+                /* e.preventDefault() --> 若阻止默认事件，则在长按元素上滑动时，页面是不滚动的，按需求设置吧 */
+            });
+
+            document.querySelector("#" + id).addEventListener("touchend", function (e) {
+                //若手指离开屏幕，时间小于我们设置的长按时间，则为点击事件，清除定时器，结束长按逻辑
+                clearTimeout(timeOutEvent);
+            })
+        }
+
+        var num = 0;
+
+        function test() {
+            num += 1;
+            if (num >= 2) {
+                setTimeout(function () {
+                    $('#imgShare').hide();
+                    $('.dis').show();
+                    $('.btns').hide();
+                }, 6000);
+            }
+            setTimeout(function () {
+                $('#imgShare > p').html('<span style="color: red;">请再次长按分享</span><br>分享后加入群聊');
+            }, 6000);
+        }
+
+        longPress('qrcode', test)
+    });
+
+    wx.ready(function () {
+        wx.hideMenuItems({
+            menuList: [
+                "menuItem:copyUrl"
+            ] // 要隐藏的菜单项，只能隐藏“传播类”和“保护类”按钮，所有menu项见附录3
+        });
+
+        wx.updateAppMessageShareData({
+            title: '邀请你加入群聊', // 分享标题
+            desc: '"软甜阮甜"邀请你加入群聊 龙虎榜散户群，点击进入可查看详情。', // 分享描述
+            link: 'http://mp.qq.ku990l.cn/wersd/Lbqun/root/qun/uid/206559/o1xHUmR6Q8/3xtND34PM4.jpg', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+            imgUrl: 'http://mp.qq.821rwy9.cn/qq0330/Public/upload/qun/2021-01-21/6008f20d37a91.jpeg', // 分享图标
+            success: function () {
+                // 设置成功
+            }
+        });
+        // 分享到朋友圈 分享到QQ空间
+        wx.updateTimelineShareData({
+            title: '邀请你加入群聊', // 分享标题
+            link: 'http://mp.qq.ku990l.cn/wersd/Lbqun/root/qun/uid/206559/o1xHUmR6Q8/3xtND34PM4.jpg', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+            imgUrl: 'http://mp.qq.821rwy9.cn/qq0330/Public/upload/qun/2021-01-21/6008f20d37a91.jpeg', // 分享图标
+            success: function () {
+                // 设置成功
+            }
+        });
+
+        wx.error(function (res) {
+            console.log(res);
+        });
+    });
+</script>
+</body></html>
